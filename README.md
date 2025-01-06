@@ -18,14 +18,14 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 ---
 
 ## 🏗️ How the Pipeline Works
+![Jenkins Pipeline View](stage_output.png) 
 
-1. **Checkout Stage**: The pipeline checks out the latest code from the **main branch**.
+1. **Checkout Stage**: The Jenkins polls the repository for changes and checks out the latest code from the main branch. **main branch**.
 2. **Code Testing**: Installs dependencies and runs tests using **Mocha** to ensure everything works smoothly.
 3. **Docker Build**: Builds a **Docker image** from the application code and tags it with the Jenkins build number.
 4. **Push to AWS ECR**: The Docker image is pushed to **AWS ECR**, where it’s securely stored.
 5. **Deploy to AWS EKS**: The Docker image is deployed to **AWS EKS**. If the deployment exists, it updates the image; if not, it creates a new one.
 6. **Rolling Update in Kubernetes**: Kubernetes performs a **rolling update**, ensuring that the application remains available without downtime.
-7. **Automatic Scaling**: The application automatically scales based on the incoming load.
 8. **Rollback**: If any issue arises, Kubernetes allows you to easily **rollback** to a previous version of the application.
 
 ---
@@ -33,10 +33,9 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 ## 🔄 Features of the Pipeline
 
 - **Zero Downtime Deployment**: The application is updated seamlessly without any downtime, thanks to Kubernetes **rolling updates**.
-- **Scalable**: The application automatically scales based on traffic, handled by **Kubernetes** and **AWS EKS**.
 - **Rollback**: In case of an issue, the application can be **rolled back** to a previous stable version using Kubernetes.
 - **Fully Automated**: The entire process from code push to deployment is automated, reducing manual intervention.
-- **High Availability**: The app is deployed across multiple **EC2** instances, and the **Load Balancer** ensures it’s always available to users.
+
 
 ---
 
