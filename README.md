@@ -4,17 +4,6 @@
 
 This project demonstrates an **automated CI/CD pipeline** built using **Jenkins**, **AWS ECR**, **AWS EKS**, **Docker**, **AWS EC2**, **Load Balancer**, and **AWS CLI**. This pipeline ensures that every time developers push code to the main branch, a new Docker image is built, tested, stored, and deployed seamlessly to AWS EKS with **zero downtime** and **high availability**.
 
-### 🔑 Key Highlights:
-- **Automated Docker Image Creation:** Every time code is pushed to the **main branch**, Jenkins triggers the pipeline and builds a new Docker image tagged with the latest Jenkins build number.
-- **Code Scanning & Testing:** The code is scanned and tested using **Mocha** to ensure quality and prevent issues.
-- **AWS ECR for Docker Image Storage:** The Docker image is pushed to **AWS ECR** for secure and efficient storage.
-- **AWS EKS for Deployment:** The application is deployed on **AWS EKS** with zero-downtime updates and scaling capabilities.
-- **Kubernetes Features for Seamless Updates:** 
-  - **Rolling Updates:** Kubernetes ensures that the application is updated without any downtime.
-  - **Automatic Scaling:** Kubernetes scales the application based on traffic demands.
-  - **Rollback Capabilities:** In case of failure, Kubernetes allows easy rollback to a previous version.
-- **AWS EC2 & Load Balancer:** The application is hosted on **EC2** instances, and a **Load Balancer** ensures high availability and distributes traffic across multiple instances.
-
 ## 🛠️ Tools Used
 
 - **Jenkins**: Automates the CI/CD pipeline.
@@ -23,8 +12,8 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 - **AWS EKS**: Manages Kubernetes for deployment and scaling.
 - **AWS CLI**: Interacts with AWS services from the command line.
 - **Kubernetes**: Manages container orchestration and application deployment.
-- **AWS EC2**: Hosts the application instances.
-- **AWS Load Balancer**: Ensures high availability and distributes traffic efficiently.
+- **AWS EC2**: As a jenkins server.
+- **AWS Load Balancer**: Distributes traffic accros the pods efficiently.
 
 ---
 
