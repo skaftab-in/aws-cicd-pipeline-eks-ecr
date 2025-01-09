@@ -2,7 +2,8 @@
 
 ## 📝 Project Summary
 
-This project demonstrates an **automated CI/CD pipeline** built using **Jenkins**, **AWS ECR**, **AWS EKS**, **Docker**, **AWS EC2**, **Load Balancer**, and **AWS CLI**. This pipeline ensures that every time developers push code to the main branch, a new Docker image is built, tested, stored, and deployed seamlessly to AWS EKS with **zero downtime** and **high availability**.
+This project demonstrates an **automated CI/CD pipeline** built using **Jenkins**, **AWS ECR**, **AWS EKS**, **Docker**, **AWS EC2**, **Load Balancer**, **AWS CLI**, and a **Node.js** application. The pipeline ensures that every time developers push code to the **main** branch, a new Docker image is built, tested, stored, and deployed seamlessly to AWS EKS, ensuring **high availability**.
+
 
 ## 🛠️ Tools Used
 
@@ -55,21 +56,37 @@ The **Jenkins Pipeline** automates the entire CI/CD process, from building and t
 
 ![Jenkins Pipeline View](Stage%20view-jenkins.png)
 
-### 7. **Kubernetes Rolling Updates**
+### 7. **Changes Reflected After Pipeline Execution**
+The **CICD pipeline** is triggered automatically via a GitHub webhook, executing all defined stages sequentially, from code checkout to deployment on AWS EKS.
+
+![AWS Instance Connect Terminal Commands](aws-instance-connect-terminal_K8s.png)
+
+**Description:**
+- `kubectl get pods`: Displays all running pods.
+- `kubectl get svc`: Lists all services and their endpoints.
+- `kubectl get all`: Provides a complete overview of Kubernetes resources.
+
+- **First Output:** The initial version of the application is deployed after pushing code to the GitHub repository. The first version of the basic page is displayed.
+
+
+#### **Frontend Updates**
+- **Change 1:**  Changes to `index.html` trigger the pipeline, and the updated content is reflected on the frontend.
+
+-![Website First Output](some_changes-1.png)
+
+- **Change 2:** Additional modifications are made to the application, and these changes are seamlessly deployed and reflected on the live website post pipeline execution.
+ ![Website After Changes](more_changes-2.png)
+
+### 8. **Kubernetes Rolling Updates**
+
 
 Kubernetes ensures zero downtime by performing rolling updates. If a deployment fails, Kubernetes can roll back to a previous stable version.
 
-![Kubernetes Rolling Update](aws-instance-connect-terminal_K8s.png)
+![Kubernetes Rolling Update](aws-instance-connect-terminal_K8s_rollout.png)
 
-### 8. **Changes Reflected After Pipeline Execution**
 
-- **First Output:** The initial version of the application is deployed after pushing code to the GitHub repository. The first version of the basic page is displayed.
-- **Change 1:** Updates made to the `index.html` file are reflected on the website after the pipeline executes.
-- **Change 2:** Additional modifications are made to the application, and these changes are seamlessly deployed and reflected on the live website post pipeline execution.
 
-![AWS Instance Connect Terminal Commands](aws-instance-connect-terminal_K8s.png)
-![Website First Output](some_changes-1.png)
-![Website After Changes](more_changes-2.png)
+
 
 ---
 
