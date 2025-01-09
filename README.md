@@ -22,42 +22,42 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 
 The **AWS EKS Cluster** is the backbone of this project. It provides a managed Kubernetes environment where the application is deployed. The cluster ensures scalability, reliability, and ease of management.
 
-![AWS EKS Cluster](k8s%20cluster.png)
+![AWS EKS Cluster](img/k8s%20cluster.png)
 
 ### 2. **Node Group**
 
 The **Node Group** consists of EC2 instances managed by AWS EKS. These nodes run the Kubernetes pods that host the application. The group ensures efficient resource allocation and scaling.
 
-![Node Group](node_grp.png)
+![Node Group](img/node_grp.png)
 
 ### 3. **Elastic Load Balancer (ELB)**
 
 The **Elastic Load Balancer** distributes incoming traffic across the Kubernetes pods, ensuring high availability and balancing the load efficiently.
 
-![Elastic Load Balancer](elb.png)
+![Elastic Load Balancer](img/elb.png)
 
 ### 4. **AWS ECR**
 
 The **AWS Elastic Container Registry (ECR)** securely stores the Docker images built during the pipeline. These images are used for deployment to the EKS cluster.
 
-![AWS ECR](ecr.png)
+![AWS ECR](img/ecr.png)
 
 ### 5. **GitHub Webhook**
 
 A **GitHub Webhook** is configured to trigger the Jenkins pipeline automatically whenever new code is pushed to the repository.
 
-![GitHub Webhook](github%20web-hook.png)
+![GitHub Webhook](img/github%20web-hook.png)
 
 ### 6. **Jenkins Pipeline**
 
 The **Jenkins Pipeline** automates the entire CI/CD process, from building and testing the application to deploying it on AWS EKS. The pipeline is configured to handle rolling updates and rollbacks seamlessly.
 
-![Jenkins Pipeline View](Stage%20view-jenkins.png)
+![Jenkins Pipeline View](img/Stage%20view-jenkins.png)
 
 ### 7. **Changes Reflected After Pipeline Execution**
 The **CICD pipeline** is triggered automatically via a GitHub webhook, executing all defined stages sequentially, from code checkout to deployment on AWS EKS.
 
-![AWS Instance Connect Terminal Commands](aws-instance-connect-terminal_K8s.png)
+![AWS Instance Connect Terminal Commands](img/aws-instance-connect-terminal_K8s.png)
 
 **Description:**
 - `kubectl get pods`: Displays all running pods.
@@ -70,17 +70,17 @@ The **CICD pipeline** is triggered automatically via a GitHub webhook, executing
 #### **Frontend Updates**
 - **Change 1:**  Changes to `index.html` trigger the pipeline, and the updated content is reflected on the frontend.
 
--![Website First Output](some_changes-1.png)
+-![Website First Output](img/some_changes-1.png)
 
 - **Change 2:** Additional modifications are made to the application, and these changes are seamlessly deployed and reflected on the live website post pipeline execution.
- ![Website After Changes](more_changes-2.png)
+ ![Website After Changes](img/more_changes-2.png)
 
 ### 8. **Kubernetes Rolling Updates**
 
 
 Kubernetes ensures zero downtime by performing rolling updates. If a deployment fails, Kubernetes can roll back to a previous stable version.
 
-![Kubernetes Rolling Update](aws-instance-connect-terminal_K8s_rollout.png)
+![Kubernetes Rolling Update](img/aws-instance-connect-terminal_K8s_rollout.png)
 
 
 
