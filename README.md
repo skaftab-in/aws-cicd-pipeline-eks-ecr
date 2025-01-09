@@ -1,9 +1,7 @@
 # 🚀 CI/CD Pipeline for AWS EKS, ECR, Docker, Jenkins, and AWS CLI
 
 ## 📝 Project Summary
-
-This project demonstrates an **automated CI/CD pipeline** built using **Jenkins**, **AWS ECR**, **AWS EKS**, **Docker**, **AWS EC2**, **Load Balancer**, **AWS CLI**, and a **Node.js** application. The pipeline ensures that every time developers push code to the **main** branch, a new Docker image is built, tested, stored, and deployed seamlessly to AWS EKS, ensuring **high availability**.
-
+This project demonstrates an **automated CI/CD pipeline** built using **Jenkins**, **AWS ECR**, **AWS EKS**, **Docker**, **AWS EC2**, **Load Balancer**, **AWS CLI**, and a **Node.js** application. The pipeline ensures **END-to-END Deployment**, where every time developers push code to the **main** branch, a new Docker image is built, tested, stored, and deployed seamlessly to AWS EKS, ensuring **high availability**.
 
 ## 🛠️ Tools Used
 
@@ -179,6 +177,47 @@ pipeline {
 ```
 
 ---
+## ☸️ Kubernetes YAML File
+
+The Kubernetes deployment and service manifest file (`app.yaml`) is used for deploying the application and exposing it via a LoadBalancer.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-aws-cicd-deployment
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: node-app-devops-project
+  template:
+    metadata:
+      labels:
+        app: node-app-devops-project
+    spec:
+      containers:
+      - name: node-app-devops-project
+        image: public.ecr.aws/x9f9n9e7/k8s_end_to_end_deployment:node_app_DevOps_Proj_v0.15
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-aws-cicd-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: node-app-devops-project
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+```
+
+---
 
 ## 🚀 How to Run the Pipeline Locally
 
@@ -203,4 +242,16 @@ This project demonstrates the power of modern CI/CD tools like **Jenkins**, **Do
 
 ---
 
-### 🌐 GitHub Repository: [aws-cicd-pipeline-eks-ecr](https://github.com/skaftab-in/aws-cicd-pipeline-eks-ecr)
+---
+
+## 📢 Stay Connected  
+Proudly created, deployed, and documented by **Mohammed Aftab**.  
+
+Feel free to connect with me:   
+[![GitHub](https://img.icons8.com/?size=50&id=SzgQDfObXUbA&format=png)](https://github.com/skaftab-in)  [![LinkedIn](https://img.icons8.com/?size=50&id=xuvGCOXi8Wyg&format=png)](www.linkedin.com/in/aftab-m)  [![Instagram](https://img.icons8.com/?size=50&id=BrU2BBoRXiWq&format=png)](https://www.instagram.com/skaftab.in/) 
+
+ 
+Have suggestions or feedback? Drop a message!
+
+---
+
