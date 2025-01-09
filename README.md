@@ -12,21 +12,64 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 - **AWS EKS**: Manages Kubernetes for deployment and scaling.
 - **AWS CLI**: Interacts with AWS services from the command line.
 - **Kubernetes**: Manages container orchestration and application deployment.
-- **AWS EC2**: As a jenkins server.
-- **AWS Load Balancer**: Distributes traffic accros the pods efficiently.
+- **AWS EC2**: Hosts the Jenkins server.
+- **AWS Load Balancer**: Distributes traffic across the pods efficiently.
 
 ---
 
-## 🏗️ How the Pipeline Works
-![Jenkins Pipeline View](stage_output.png) 
+## 🏗️ Pipeline Components and Details
 
-1. **Checkout Stage**: The Jenkins polls the repository for changes and checks out the latest code from the main branch. **main branch**.
-2. **Code Testing**: Installs dependencies and runs tests using **Mocha** to ensure everything works smoothly.
-3. **Docker Build**: Builds a **Docker image** from the application code and tags it with the Jenkins build number.
-4. **Push to AWS ECR**: The Docker image is pushed to **AWS ECR**, where it’s securely stored.
-5. **Deploy to AWS EKS**: The Docker image is deployed to **AWS EKS**. If the deployment exists, it updates the image; if not, it creates a new one.
-6. **Rolling Update in Kubernetes**: Kubernetes performs a **rolling update**, ensuring that the application remains available without downtime.
-8. **Rollback**: If any issue arises, Kubernetes allows you to easily **rollback** to a previous version of the application.
+### 1. **AWS EKS Cluster**
+
+The **AWS EKS Cluster** is the backbone of this project. It provides a managed Kubernetes environment where the application is deployed. The cluster ensures scalability, reliability, and ease of management.
+
+![AWS EKS Cluster](k8s%20cluster.png)
+
+### 2. **Node Group**
+
+The **Node Group** consists of EC2 instances managed by AWS EKS. These nodes run the Kubernetes pods that host the application. The group ensures efficient resource allocation and scaling.
+
+![Node Group](node_grp.png)
+
+### 3. **Elastic Load Balancer (ELB)**
+
+The **Elastic Load Balancer** distributes incoming traffic across the Kubernetes pods, ensuring high availability and balancing the load efficiently.
+
+![Elastic Load Balancer](elb.png)
+
+### 4. **AWS ECR**
+
+The **AWS Elastic Container Registry (ECR)** securely stores the Docker images built during the pipeline. These images are used for deployment to the EKS cluster.
+
+![AWS ECR](ecr.png)
+
+### 5. **GitHub Webhook**
+
+A **GitHub Webhook** is configured to trigger the Jenkins pipeline automatically whenever new code is pushed to the repository.
+
+![GitHub Webhook](github%20web-hook.png)
+
+### 6. **Jenkins Pipeline**
+
+The **Jenkins Pipeline** automates the entire CI/CD process, from building and testing the application to deploying it on AWS EKS. The pipeline is configured to handle rolling updates and rollbacks seamlessly.
+
+![Jenkins Pipeline View](Stage%20view-jenkins.png)
+
+### 7. **Kubernetes Rolling Updates**
+
+Kubernetes ensures zero downtime by performing rolling updates. If a deployment fails, Kubernetes can roll back to a previous stable version.
+
+![Kubernetes Rolling Update](aws-instance-connect-terminal_K8s.png)
+
+### 8. **Changes Reflected After Pipeline Execution**
+
+- **First Output:** The initial version of the application is deployed after pushing code to the GitHub repository. The first version of the basic page is displayed.
+- **Change 1:** Updates made to the `index.html` file are reflected on the website after the pipeline executes.
+- **Change 2:** Additional modifications are made to the application, and these changes are seamlessly deployed and reflected on the live website post pipeline execution.
+
+![AWS Instance Connect Terminal Commands](aws-instance-connect-terminal_K8s.png)
+![Website First Output](some_changes-1.png)
+![Website After Changes](more_changes-2.png)
 
 ---
 
@@ -35,7 +78,6 @@ This project demonstrates an **automated CI/CD pipeline** built using **Jenkins*
 - **Zero Downtime Deployment**: The application is updated seamlessly without any downtime, thanks to Kubernetes **rolling updates**.
 - **Rollback**: In case of an issue, the application can be **rolled back** to a previous stable version using Kubernetes.
 - **Fully Automated**: The entire process from code push to deployment is automated, reducing manual intervention.
-
 
 ---
 
@@ -118,12 +160,6 @@ pipeline {
     }
 }
 ```
-
----
-#  🚧 🛠️🛑I am Under construction 🚧
----
-
-
 
 ---
 
