@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-aws-cicd-deployment
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: node-app-devops-project
+  template:
+    metadata:
+      labels:
+        app: node-app-devops-project
+    spec:
+      containers:
+      - name: node-app-devops-project
+        image: public.ecr.aws/x9f9n9e7/k8s_end_to_end_deployment:node_app_DevOps_Proj_v0.15
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-aws-cicd-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: node-app-devops-project
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
