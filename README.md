@@ -248,7 +248,7 @@ This project demonstrates the power of modern CI/CD tools like **Jenkins**, **Do
 Proudly created, deployed, and documented by **Mohammed Aftab**.  
 
 Feel free to connect with me:   
-[![GitHub](https://img.icons8.com/?size=50&id=SzgQDfObXUbA&format=png)](https://github.com/skaftab-in)  [![LinkedIn](https://img.icons8.com/?size=50&id=xuvGCOXi8Wyg&format=png)](www.linkedin.com/in/aftab-m)  [![Instagram](https://img.icons8.com/?size=50&id=BrU2BBoRXiWq&format=png)](https://www.instagram.com/skaftab.in/) 
+[![GitHub](https://img.icons8.com/?size=50&id=SzgQDfObXUbA&format=png)](https://github.com/skaftab-in)  [![LinkedIn](https://img.icons8.com/?size=50&id=xuvGCOXi8Wyg&format=png)](www.linkedin.com/in/aftab-m/)  [![Instagram](https://img.icons8.com/?size=50&id=BrU2BBoRXiWq&format=png)](https://www.instagram.com/skaftab.in/) 
 
  
 Have suggestions or feedback? Drop a message!
